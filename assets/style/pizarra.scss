@@ -1,0 +1,51 @@
+.pizarra {
+  color: #000;
+  overflow: hidden;
+  padding: 15px 15px 10px 15px;
+  font-family: sans-serif;
+  width: 80%;
+  margin: auto;
+
+  .ventana {
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: 20px;
+    overflow: hidden;
+    margin: 10px;
+
+    .evento {
+      background-color: #70397b;
+      transition: all 0.350s;
+      display: none;
+      a {
+        text-decoration: none;
+        color: #fff;
+      }
+
+      h2 {
+        margin: 10px 15px 10px 10px;
+      }
+    }
+    .active {
+      display: block;
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: center;
+
+    button {
+      width: 100px;
+      background: #70397b;
+      border: none;
+      color: white;
+      margin: 0 15px;
+      cursor: pointer;
+      height: 25px;
+    }
+  }
+}

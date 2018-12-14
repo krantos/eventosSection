@@ -1,0 +1,48 @@
+.pizarra {
+  color: #000;
+  overflow: hidden;
+  padding: 15px 15px 10px 15px;
+  font-family: sans-serif;
+  width: 80%;
+  margin: auto;
+}
+.pizarra .ventana {
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 20px;
+  overflow: hidden;
+  margin: 10px;
+}
+.pizarra .ventana .evento {
+  background-color: #70397b;
+  transition: all 0.35s;
+  display: none;
+}
+.pizarra .ventana .evento a {
+  text-decoration: none;
+  color: #fff;
+}
+.pizarra .ventana .evento h2 {
+  margin: 10px 15px 10px 10px;
+}
+.pizarra .ventana .active {
+  display: block;
+}
+.pizarra .ventana .active img {
+  width: 100%;
+}
+.pizarra .buttons {
+  display: flex;
+  justify-content: center;
+}
+.pizarra .buttons button {
+  width: 100px;
+  background: #70397b;
+  border: none;
+  color: white;
+  margin: 0 15px;
+  cursor: pointer;
+  height: 25px;
+}
+
+/*# sourceMappingURL=pizarra.css.map */
