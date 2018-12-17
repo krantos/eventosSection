@@ -7,16 +7,32 @@
   margin: auto;
 
   .ventana {
-    display: grid;
-    grid-auto-flow: column;
-    grid-gap: 20px;
-    overflow: hidden;
-    margin: 10px;
+    // display: grid;
+    // grid-auto-flow: column;
+    // grid-gap: 20px;
+    // overflow: hidden;
+    // margin: 10px;
+    position: relative;
+    height: 100%;
+    height: 310px;
+    display: flex;
+
+    justify-content: center;
 
     .evento {
       background-color: #70397b;
-      transition: all 0.350s;
-      display: none;
+      transition: all 1.2s;
+      display: inline;
+      position: absolute;
+      opacity: 0.2;
+      margin-top: 400px;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+
+      // display: none;
       a {
         text-decoration: none;
         color: #fff;
@@ -26,26 +42,32 @@
         margin: 10px 15px 10px 10px;
       }
     }
+
     .active {
-      display: block;
-      img {
-        width: 100%;
-      }
+      margin-top: 0px;
+      opacity: 1;
+    }
+
+    .clear {
+      display: table;
+      clear: both;
     }
   }
+}
 
-  .buttons {
-    display: flex;
-    justify-content: center;
 
-    button {
-      width: 100px;
-      background: #70397b;
-      border: none;
-      color: white;
-      margin: 0 15px;
-      cursor: pointer;
-      height: 25px;
-    }
+.buttons {
+  position: initial;
+  display: flex;
+  justify-content: center;
+
+  button {
+    width: 100px;
+    background: #70397b;
+    border: none;
+    color: white;
+    margin: 0 15px;
+    cursor: pointer;
+    height: 25px;
   }
 }
