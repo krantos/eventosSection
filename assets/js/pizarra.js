@@ -4,11 +4,11 @@ const totalEventos = eventos.length;
 const nextEventBtn = document.querySelector('.next');
 const previousEventBtn = document.querySelector('.previous');
 const ventana = document.querySelector('.ventana');
+const pizarra = document.querySelector('.pizarra');
 const active = 'active';
 
 function loadFirstActive() {
   eventos[0].classList.toggle(active);
-  console.log('loadfirst');
 }
 
 function addListeners() {
@@ -39,11 +39,16 @@ function changeEvent(event) {
 
 function addHWToVentana() {
   const widths = [...images.map(img => img.offsetWidth)];
+  const heights = [...eventos.map(event => event.offsetHeight)];
+  const maxWidth =  ( Math.max([...widths])) ? Math.max([...widths]) : widths[0];
+  
+  const maxHeight = Math.max(...heights);
+  console.log(maxWidth);
   eventos.map((ev, i) => ev.style.width = `${widths[i]}px`);
 
-  const heights = [...eventos.map(event => event.offsetHeight)];
-  const maxHeight = Math.max(...heights);
   ventana.style.height = `${maxHeight}px`;
+  ventana.style.left = `-${maxWidth / 2 }px`;
+  pizarra.style.width = `${maxWidth}px`;
 }
 
 loadFirstActive();

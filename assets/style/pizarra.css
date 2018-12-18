@@ -1,14 +1,14 @@
 .pizarra {
   color: #000;
   overflow: hidden;
-  padding: 15px 15px 10px 15px;
+  margin: 10px;
   font-family: sans-serif;
-  margin: auto;
+  display: grid;
+  justify-items: center;
+  grid-row-gap: 20px;
 }
 .pizarra .ventana {
   position: relative;
-  display: flex;
-  justify-content: center;
 }
 .pizarra .ventana .evento {
   background-color: #70397b;
@@ -16,7 +16,6 @@
   display: block;
   position: absolute;
   opacity: 0;
-  margin-right: -200px;
 }
 .pizarra .ventana .evento a {
   text-decoration: none;
@@ -31,12 +30,12 @@
 }
 
 .buttons {
-  position: initial;
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-auto-flow: column;
+  grid-column-gap: 10px;
 }
 .buttons button {
-  width: 100px;
+  width: 75px;
   background: #70397b;
   border: none;
   color: white;
