@@ -4,6 +4,7 @@ const nextEventBtn = document.querySelector('.next');
 const previousEventBtn = document.querySelector('.previous');
 const ventana = document.querySelector('.ventana');
 const active = 'active';
+const image = document.querySelector('.evento img');
 
 function loadFirstActive() {
   eventos[0].classList.toggle(active);
@@ -12,6 +13,7 @@ function loadFirstActive() {
 function addListeners() {
   nextEventBtn.addEventListener('click', changeEvent);
   previousEventBtn.addEventListener('click', changeEvent);
+  image.addEventListener('load', addHeightToVentana);
 }
 
 function changeEvent(event) {
@@ -35,11 +37,8 @@ function changeEvent(event) {
 }
 
 function addHeightToVentana() {
-  setTimeout(() => {
     ventana.style.height = `${eventos[0].offsetHeight}px`;
-  }, 1000);
 }
 
 loadFirstActive();
 addListeners();
-addHeightToVentana();
