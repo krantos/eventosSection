@@ -2,6 +2,7 @@ const eventos = [...document.querySelectorAll('.evento')];
 const totalEventos = eventos.length;
 const nextEventBtn = document.querySelector('.next');
 const previousEventBtn = document.querySelector('.previous');
+const ventana = document.querySelector('.ventana');
 const active = 'active';
 
 function loadFirstActive() {
@@ -33,5 +34,12 @@ function changeEvent(event) {
   eventos[change].classList.toggle(active);
 }
 
+function addHeightToVentana() {
+  setTimeout(() => {
+    ventana.style.height = `${eventos[0].offsetHeight}px`;
+  }, 1000);
+}
+
 loadFirstActive();
 addListeners();
+addHeightToVentana();
