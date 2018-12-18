@@ -7,7 +7,7 @@ const ventana = document.querySelector('.ventana');
 const pizarra = document.querySelector('.pizarra');
 const stopBtn = document.querySelector('.stop');
 const active = 'active';
-const slideTime = 3000;
+const slideTime = 3500;
 const pause = '||';
 const play = '&#9658;';
 const next = 'next';
@@ -66,7 +66,7 @@ function addHWToVentana() {
   const maxHeight = Math.max(...heights);
   eventos.map((ev, i) => ev.style.width = `${widths[i]}px`);
   ventana.style.height = `${maxHeight}px`;
-  ventana.style.left = `-${maxWidth / 2 }px`;
+  // ventana.style.left = `-${maxWidth / 2 }px`;
   pizarra.style.width = `${maxWidth}px`;
 }
 

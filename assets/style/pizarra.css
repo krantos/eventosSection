@@ -4,7 +4,6 @@
   margin: 0 10px 0 10px;
   font-family: sans-serif;
   display: grid;
-  justify-items: center;
   grid-row-gap: 15px;
 }
 .pizarra .ventana {
@@ -16,6 +15,7 @@
   display: block;
   position: absolute;
   opacity: 0;
+  z-index: -100;
 }
 .pizarra .ventana .evento a {
   text-decoration: none;
@@ -27,6 +27,7 @@
 .pizarra .ventana .active {
   margin-right: 0px;
   opacity: 1;
+  z-index: 100;
 }
 
 .buttons button {
