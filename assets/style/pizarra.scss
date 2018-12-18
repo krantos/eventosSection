@@ -35,16 +35,9 @@
 }
 
 .buttons {
-  display: grid;
-  grid-auto-flow: column;
-  grid-column-gap: 10px;
   button {
-    width: 75px;
-    background: #70397b;
     border: none;
-    color: white;
-    margin: 0 15px;
     cursor: pointer;
-    height: 25px;
+    background-color: #fff;
   }
 }

@@ -7,7 +7,10 @@ const ventana = document.querySelector('.ventana');
 const pizarra = document.querySelector('.pizarra');
 const stopBtn = document.querySelector('.stop');
 const active = 'active';
-let slideTime = 3000;
+const slideTime = 3000;
+const pause = '||';
+const play = '&#9658;';
+const next = 'next';
 let id;
 
 function loadFirstActive() {
@@ -49,7 +52,7 @@ function previousSlide() {
 }
 
 function changeEvent(ev) {
-  if ((ev.target).className.includes('next')) {
+  if ((ev.target).className.includes(next)) {
     nextSlide();
   } else {
     previousSlide();
@@ -69,14 +72,13 @@ function addHWToVentana() {
 
 function toggleAutoSlide() {
   const text = stopBtn.textContent;
-  if (text == "||") {
+  if (text == pause) {
     clearInterval(id);
     id = 0;
-    console.log('clear interval');
-    stopBtn.innerHTML = '&#9658;';
+    stopBtn.innerHTML = play;
   } else {
     id = setInterval(nextSlide, slideTime);
-    stopBtn.innerHTML = '||';
+    stopBtn.innerHTML = pause;
   }
 }
 
