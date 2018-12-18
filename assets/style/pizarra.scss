@@ -1,11 +1,11 @@
 .pizarra {
   color: #000;
   overflow: hidden;
-  margin: 10px;
+  margin: 0 10px 0 10px;
   font-family: sans-serif;
   display: grid;
   justify-items: center;
-  grid-row-gap: 20px;
+  grid-row-gap: 15px;
 
   .ventana {
     position: relative;
