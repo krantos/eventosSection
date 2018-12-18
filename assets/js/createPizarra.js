@@ -19,6 +19,13 @@ const objData = [{
     link: 'https://www.facebook.com',
     alt: 'algo'
   },
+  {
+    id: 4,
+    image: 'https://picsum.photos/550/250/?image=44',
+    title: 'Sin fecha todav&iacute;a',
+    link: 'https://www.gmail.com',
+    alt: 'algo'
+  },
 ];
 
 function createPizzarra(data = undefined) {
