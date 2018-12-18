@@ -12,17 +12,12 @@
 
     .evento {
       background-color: #70397b;
-      transition: all 1s;
-      display: inline;
+      transition: all 0.8s;
+      display: block;
       position: absolute;
       opacity: 0;
-      margin-right: -250px;
+      margin-right: -200px;
 
-      img {
-        width: 100%;
-      }
-
-      // display: none;
       a {
         text-decoration: none;
         color: #fff;

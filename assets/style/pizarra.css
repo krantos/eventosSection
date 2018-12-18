@@ -12,14 +12,11 @@
 }
 .pizarra .ventana .evento {
   background-color: #70397b;
-  transition: all 1s;
-  display: inline;
+  transition: all 0.8s;
+  display: block;
   position: absolute;
   opacity: 0;
-  margin-right: -250px;
-}
-.pizarra .ventana .evento img {
-  width: 100%;
+  margin-right: -200px;
 }
 .pizarra .ventana .evento a {
   text-decoration: none;

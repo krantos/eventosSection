@@ -1,19 +1,20 @@
 const eventos = [...document.querySelectorAll('.evento')];
+const images = [...document.querySelectorAll('img')];
 const totalEventos = eventos.length;
 const nextEventBtn = document.querySelector('.next');
 const previousEventBtn = document.querySelector('.previous');
 const ventana = document.querySelector('.ventana');
 const active = 'active';
-const image = document.querySelector('.evento img');
 
 function loadFirstActive() {
   eventos[0].classList.toggle(active);
+  console.log('loadfirst');
 }
 
 function addListeners() {
   nextEventBtn.addEventListener('click', changeEvent);
   previousEventBtn.addEventListener('click', changeEvent);
-  image.addEventListener('load', addHeightToVentana);
+  window.addEventListener('load', addHWToVentana);
 }
 
 function changeEvent(event) {
@@ -36,8 +37,13 @@ function changeEvent(event) {
   eventos[change].classList.toggle(active);
 }
 
-function addHeightToVentana() {
-    ventana.style.height = `${eventos[0].offsetHeight}px`;
+function addHWToVentana() {
+  const widths = [...images.map(img => img.offsetWidth)];
+  eventos.map((ev, i) => ev.style.width = `${widths[i]}px`);
+
+  const heights = [...eventos.map(event => event.offsetHeight)];
+  const maxHeight = Math.max(...heights);
+  ventana.style.height = `${maxHeight}px`;
 }
 
 loadFirstActive();
