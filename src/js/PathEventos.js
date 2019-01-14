@@ -49,7 +49,7 @@ class PathEventos extends Component {
           ctx.fillStyle = '#fff';
           ctx.drawImage(image, 0, 0, 750, 500);
           let resizedImage = new Image();
-          let data = canvas.toDataURL('image/png', 0.85);
+          let data = canvas.toDataURL('image/jpeg', 0.85);
           console.log(data);
           resizedImage.src = data; 
           resized.appendChild(resizedImage);
