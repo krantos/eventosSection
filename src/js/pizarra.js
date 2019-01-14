@@ -1,20 +1,37 @@
-const eventos = [...document.querySelectorAll('.evento')];
-const images = [...document.querySelectorAll('img')];
-const totalEventos = eventos.length;
-const nextEventBtn = document.querySelector('.next');
-const previousEventBtn = document.querySelector('.previous');
-const ventana = document.querySelector('.ventana');
-const pizarra = document.querySelector('.pizarra');
-const stopBtn = document.querySelector('.stop');
-const active = 'active';
-const slideTime = 3500;
-const pause = '||';
-const play = '&#9658;';
-const next = 'next';
+let eventos;
+let images;
+let totalEventos;
+let nextEventBtn;
+let previousEventBtn;
+let ventana;
+let pizarra;
+let stopBtn;
+let active;
+let slideTime;
+let pause;
+let play;
+let next;
 let id;
+
+function init() {
+  eventos = [...document.querySelectorAll('.evento')];
+  images = [...document.querySelectorAll('img')];
+  totalEventos = eventos.length;
+  nextEventBtn = document.querySelector('.next');
+  previousEventBtn = document.querySelector('.previous');
+  ventana = document.querySelector('.ventana');
+  pizarra = document.querySelector('.pizarra');
+  stopBtn = document.querySelector('.stop');
+  active = 'active';
+  slideTime = 5000;
+  pause = '||';
+  play = '&#9658;';
+  next = 'next';
+}
 
 function loadFirstActive() {
   eventos[0].classList.toggle(active);
+  return true;
 }
 
 function addListeners() {
@@ -64,6 +81,7 @@ function addHWToVentana() {
   const heights = [...eventos.map(event => event.offsetHeight)];
   const maxWidth = Math.max(...widths);
   const maxHeight = Math.max(...heights);
+  console.log(eventos);
   eventos.map((ev, i) => ev.style.width = `${widths[i]}px`);
   ventana.style.height = `${maxHeight}px`;
   // ventana.style.left = `-${maxWidth / 2 }px`;
@@ -81,8 +99,3 @@ function toggleAutoSlide() {
     stopBtn.innerHTML = pause;
   }
 }
-
-
-loadFirstActive();
-addListeners();
-toggleAutoSlide();

@@ -28,7 +28,32 @@ const objData = [{
   },
 ];
 
-function createPizzarra(data = undefined) {
+function getDataList() {
+  return new Promise((resolve) => {
+    fetch('https://picsum.photos/list')
+      .then(function (response) {
+        resolve(response.json());
+      });
+  });
+}
+
+getDataList()
+  .then(list => {
+    console.log(list);
+    return createPizarra();
+  })
+  .then(pizz => {
+    document.querySelector('.mySlider').innerHTML = pizz;
+    init();
+    addListeners();
+    loadFirstActive();
+    toggleAutoSlide();
+  }) 
+  .catch(err => {
+    console.error(err);
+  });
+
+function createPizarra(data = undefined) {
   console.log(objData.length);
   let pizarra = `
     <div class="pizarra">
@@ -43,8 +68,9 @@ function createPizzarra(data = undefined) {
         <button class="stop">&#9658;</button>
         <button class="next">&rarr;</button>
       </div>`;
-  console.log(pizarra);
-  return pizarra;
+  return  new Promise(resolve => {
+    resolve(pizarra);
+  });
 }
 
 function createEvento(elem) {
@@ -58,5 +84,3 @@ function createEvento(elem) {
   `;
   return htmlEvento;
 }
-
-document.querySelector('.mySlider').innerHTML = createPizzarra();

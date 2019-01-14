@@ -11,7 +11,7 @@
 }
 .pizarra .ventana .evento {
   background-color: #70397b;
-  transition: all 0.8s;
+  transition: all 2s;
   display: block;
   position: absolute;
   opacity: 0;

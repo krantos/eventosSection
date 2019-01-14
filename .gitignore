@@ -1,0 +1,5 @@
+node_modules
+dist
+.grunt
+.DS_STORE
+bundle.js
