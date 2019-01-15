@@ -12,53 +12,76 @@ class PathEventos extends Component {
 
 
   componentDidMount() {
-    let canvas = document.getElementById('canvas');
-    let ctx = canvas.getContext('2d');
-    canvas.width = 750;
-    canvas.height = 500;
   }
 
   loadPreview(e) {
     console.log(e.target.files);
-    const preview = document.getElementById('preview');
     const resized = document.getElementById('resized');
-    const w = document.getElementById('canvas').width;
     const canvas = document.getElementById('canvas');
     let ctx = canvas.getContext('2d');
-    canvas.width = 750;
-    canvas.height = 500;
 
     for(const i of e.target.files) {
-
-      const h = document.getElementById('canvas').width;
       const reader = new FileReader();
-
       reader.addEventListener('load', function() {
         ctx.fillStyle = '#fff';  /// set white fill style
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         let image = new Image();
 
         image.onload = function() {
-
+					canvas.width = 645;
+					canvas.height = 430;
           const nw = image.naturalWidth;
-          const nh = image.naturalHeight;
-          const aspect = nw / nh;
-          const h = w / aspect;
-          console.log(`height ${h}`);
-          canvas.height = 500;
-          ctx.fillStyle = '#fff';
-          ctx.drawImage(image, 0, 0, 750, 500);
+					const nh = image.naturalHeight;
+					let h = canvas.height;
+					let w = canvas.width;
+
+					if( nw >= w && nh >= h && nw != nh) {
+						if( nw - w < nh - h) {
+							w = h * nw / nh;
+						} else {
+							h = w * nh / nw;
+						}
+					}
+					
+					if( nw < w && nh >= h) {
+						console.log(`nw ${nw} / $nh ${nh}`);
+						// if( w - nw > nh - h) {
+							w = h * nw / nh;
+						// } else {
+						// 	h = w * nh / nw;
+						// }
+					}
+
+					if( nw >= w && nh < h) {
+						// if( w - nw < h - nh) {
+						// 	w = h * nw / nh;
+						// } else {
+							h = w * nh / nw;
+						// }
+					}
+					
+					if( nw < w && nh < h && nw != nh ) {
+						if( w - nw > h - nh) {
+							w = h * nw / nh;
+						} else {
+							h = w * nh / nw;
+						}
+					}
+
+					canvas.width = w;
+					canvas.height = h;
+					console.log(`w = ${w} / h = ${h}`);
+					ctx.fillStyle = '#fff';
+					const px = (canvas.width - w) / 2;
+					const py = (canvas.height - h) / 2;
+          ctx.drawImage(image, px, py, w, h);
           let resizedImage = new Image();
           let data = canvas.toDataURL('image/jpeg', 0.85);
-          console.log(data);
           resizedImage.src = data; 
           resized.appendChild(resizedImage);
-
         };
         image.src = this.result;
-        //preview.appendChild(image);
       }, false);
-
       reader.readAsDataURL(i);
 
     }
