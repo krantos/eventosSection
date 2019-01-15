@@ -7,21 +7,54 @@ class PathEventos extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      eventos: []
+      images: [],
+      status: false,
     };
-    this.loadPreview = this.loadPreview.bind(this);
+    this.loadImages = this.loadImages.bind(this);
   }
 
 
   componentDidMount() {}
 
-  loadPreview(e) {
-    console.log(e.target.files);
-    const resized = document.getElementById('resized');
+  loadImages(e) {
+   this.setState({
+     images = e.target.files,
+     status: true,
+   });
+  }
+
+  render() {
+    const {status, images} = this.state;
+    if( !status ) {
+
+      return(
+        <div className="App">
+          <input id="inputi" type="file" multiple name="images" accept="image/*" onChange={this.loadImages}/>
+        </div>
+      );
+
+    } else {
+      return(  
+        <div id="preview">
+          <canvas id="canvas">
+          </canvas>
+          <div id="resized">
+            {images.map((image,index) => <LoadPreview key={index} image={image}/> )}
+          </div>
+      </div>
+      );
+
+    } 
+  }
+}
+
+function LoadPreview ({image}) {
+
+   const resized = document.getElementById('resized');
     const canvas = document.getElementById('canvas');
     let ctx = canvas.getContext('2d');
 
-    for (const i of e.target.files) {
+    for (const i of e.target.files) { 
       const reader = new FileReader();
       reader.addEventListener('load', function () {
         ctx.fillStyle = '#fff'; /// set white fill style
@@ -45,7 +78,6 @@ class PathEventos extends Component {
           }
           // canvas.width = w;
           // canvas.height = h;
-          console.log(`w = ${w} / h = ${h}`);
           ctx.fillStyle = '#fff';
           const px = (canvas.width - w) / 2;
           const py = (canvas.height - h) / 2;
@@ -60,24 +92,6 @@ class PathEventos extends Component {
       reader.readAsDataURL(i);
 
     }
-  }
-
-  render() {
-    return(
-      <div className="App">
-        <input id="inputi" type="file" multiple name="images" accept="image/*" onChange={this.loadPreview}/>
-        <div id="preview">
-
-        </div>
-        <canvas id="canvas">
-
-        </canvas>
-        <div id="resized">
-        
-        </div>
-      </div>
-    ); 
-  }
 }
 
 export default hot(module)(PathEventos);
