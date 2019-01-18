@@ -12,6 +12,7 @@ class PathEventos extends Component {
       status: false,
     };
     this.loadImages = this.loadImages.bind(this);
+    this.loadIntoCanvas = this.loadIntoCanvas.bind(this);
   }
 
 
@@ -32,7 +33,12 @@ class PathEventos extends Component {
       reader.readAsDataURL(i);
       return prom;
     });
-    Promise.all(promises).then(loadedImage => this.resizeImage(loadedImage));
+    Promise.all(promises).then(loadedImage => {
+      this.resizeImage(loadedImage);
+      this.setState({
+        status: true
+      })
+    });
   }
 
   resizeImage(imageData) {
@@ -64,7 +70,6 @@ class PathEventos extends Component {
           let data = canvas.toDataURL('image/jpeg', 0.85);
           resolve(data);
         }
-
       });
 
       imgHelper.src = i;
@@ -80,9 +85,30 @@ class PathEventos extends Component {
     })
   }
 
+  loadIntoCanvas(ev) {
+    const imgData = new Image();
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    imgData.src = ev.target.src;
+    canvas.width = 645;
+    canvas.height = 430;
+    ctx.drawImage(imgData, 0, 0, 645, 430);
+    this.switchSelected(ev.target);
+  }
+
+  switchSelected(imgTarget) {
+    const previousImg = document.querySelector('.selected');
+    if(previousImg) {
+      previousImg.classList.toggle('selected');
+      imgTarget.classList.toggle('selected');
+    } else {
+      imgTarget.classList.toggle('selected');
+    }
+  }
+
   render() {
-    const {status, images} = this.state;
-    if( !status ) {
+    const {status, resized, images} = this.state;
+    if( !status && !resized ) {
 
       return(
         <div className="App">
@@ -92,13 +118,35 @@ class PathEventos extends Component {
         </div>
       );
 
-    } else {
-      return(  
-          <div id="resized">
-            {images.map((image,index) => 
-              <img className="img-fluid" key={index} src={image} onLoad={this.imageElement}/> 
-            )}
+    } 
+
+    if(status && !resized) {
+      return (
+        <div className="waiting">
+        </div>
+      )
+    }
+    
+    if(status && resized) {
+      return(
+        <div className="row">
+        
+        <div className="col align-self-center">
+          <canvas  id="canvas">
+          </canvas>
+        </div>
+        <div className="col-md-5">
+          <div className="row">
+          {images.map((image,index) => {
+            return (
+              <React.Fragment>
+                <img className="col-sm-4 img-fluid" key={index} src={image} onLoad={this.imageElement} onClick={this.loadIntoCanvas}/> 
+              </React.Fragment>
+            );}
+          )}
           </div>
+        </div>
+        </div>
       );
 
     } 

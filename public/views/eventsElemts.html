@@ -11,18 +11,34 @@
 <body>
   <style>
     * {
-      background-color: rgb(216, 216, 216);
+      /* background-color: rgb(216, 216, 216); */
     }
 
     #canvas {
-      border: 1px solid #999;
+      /* border: 1px solid #999; */
       margin: 1rem auto;
       display: block;
+      margin: auto;
+      position: fixed;
+      top: 25px;
+      left: 25px;
+
     }
 
     img {
-      width: 20%;
-      margin: 20px;
+      margin: 10px;
+      cursor: pointer;
+    }
+    .selected { 
+        outline: 5px dashed cornflowerblue;    
+        z-index: 100;
+    }
+    img:hover {
+      outline: 5px dashed grey;
+    }
+    .waiting {
+      width: 1vh;
+      background: blue;
     }
   </style>
   <div id="eventosE">
@@ -30,6 +46,8 @@
   </div>
 
   <script src="../../dist/bundle.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 
 </html>
