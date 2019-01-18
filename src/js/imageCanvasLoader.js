@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import {hot} from "react-hot-loader";
 import "../style/imageCanvasLoader.css";
 
+
+const userWidth = 1024;
+const userHeight = 768;
+
 class ImageCanvasLoader extends Component {
 
   constructor(props) {
@@ -52,8 +56,8 @@ class ImageCanvasLoader extends Component {
       const prom = new Promise(resolve => {
 
           imgHelper.onload = function() {
-          canvas.width = 645;
-          canvas.height = 430;
+          canvas.width = userWidth;
+          canvas.height = userHeight;
           ctx.fillStyle = '#fff'; /// set white fill style
           ctx.fillRect(0, 0, canvas.width, canvas.height);
           const nw = imgHelper.naturalWidth;
@@ -91,8 +95,8 @@ class ImageCanvasLoader extends Component {
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
     imgData.src = ev.target.src;
-    canvas.width = 645;
-    canvas.height = 430;
+    canvas.width = userWidth;
+    canvas.height = userHeight;
     ctx.drawImage(imgData, 0, 0, 645, 430);
     console.log(ev.target.name);
     this.switchSelected(ev.target);
@@ -109,10 +113,15 @@ class ImageCanvasLoader extends Component {
     
   }
 
+  cleanCanvas() {
+
+  }
+
   removeImage(ev) {
     console.log(ev.target.name);
     let images = this.state.images;
     images.splice(ev.target.name, 1);
+    this.cleanCanvas();
     this.setState({
       images: images
     });
