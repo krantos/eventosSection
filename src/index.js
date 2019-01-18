@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./js/App.js";
-import PathEventos from "./js/PathEventos";
+import ImageCanvasLoader from "./js/imageCanvasLoader";
 
 
 const objData = [{
@@ -35,4 +35,4 @@ const objData = [{
 ];
 
 //ReactDOM.render(<App objData={objData} />, document.getElementById("root"));
-ReactDOM.render(<PathEventos />, document.getElementById('eventosE'));
+ReactDOM.render(<ImageCanvasLoader />, document.getElementById('addImages'));

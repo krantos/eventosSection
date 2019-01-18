@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import {hot} from "react-hot-loader";
 import "../style/pizarra.css";
 
-class PathEventos extends Component {
+class ImageCanvasLoader extends Component {
 
   constructor(props) {
     super(props);
@@ -13,6 +13,7 @@ class PathEventos extends Component {
     };
     this.loadImages = this.loadImages.bind(this);
     this.loadIntoCanvas = this.loadIntoCanvas.bind(this);
+    this.removeImage = this.removeImage.bind(this);
   }
 
 
@@ -42,8 +43,8 @@ class PathEventos extends Component {
   }
 
   resizeImage(imageData) {
-     const canvas = document.getElementById('canvas');
-     const ctx = canvas.getContext('2d');
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
     let promises = imageData.map(i => {
 
       const imgHelper = new Image();
@@ -106,6 +107,15 @@ class PathEventos extends Component {
     }
   }
 
+  removeImage(ev) {
+    console.log(ev.target.name);
+    let images = this.state.images;
+    images.splice(ev.target.name, 1);
+    this.setState({
+      images: images
+    });
+  }
+
   render() {
     const {status, resized, images} = this.state;
     if( !status && !resized ) {
@@ -130,18 +140,18 @@ class PathEventos extends Component {
     if(status && resized) {
       return(
         <div className="row">
-        
-        <div className="col align-self-center">
+        <div className="col-md-6">
           <canvas  id="canvas">
           </canvas>
         </div>
-        <div className="col-md-5">
+        <div className="col-md-4">
           <div className="row">
           {images.map((image,index) => {
             return (
-              <React.Fragment>
-                <img className="col-sm-4 img-fluid" key={index} src={image} onLoad={this.imageElement} onClick={this.loadIntoCanvas}/> 
-              </React.Fragment>
+              <div className='col-sm-4 imgContainer' key={index} >
+                <img className="img-fluid" src={image} onLoad={this.imageElement} onClick={this.loadIntoCanvas}/>
+                <button type="button" className="btn btn-danger" name={index} onClick={this.removeImage}> &#10008; </button>
+              </div>
             );}
           )}
           </div>
@@ -247,4 +257,4 @@ class PathEventos extends Component {
 //     }
 // }
 
-export default hot(module)(PathEventos);
+export default hot(module)(ImageCanvasLoader);
