@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {hot} from "react-hot-loader";
-import "../style/pizarra.css";
+import "../style/imageCanvasLoader.css";
 
 class ImageCanvasLoader extends Component {
 
@@ -94,6 +94,7 @@ class ImageCanvasLoader extends Component {
     canvas.width = 645;
     canvas.height = 430;
     ctx.drawImage(imgData, 0, 0, 645, 430);
+    console.log(ev.target.name);
     this.switchSelected(ev.target);
   }
 
@@ -105,6 +106,7 @@ class ImageCanvasLoader extends Component {
     } else {
       imgTarget.classList.toggle('selected');
     }
+    
   }
 
   removeImage(ev) {
@@ -144,13 +146,22 @@ class ImageCanvasLoader extends Component {
           <canvas  id="canvas">
           </canvas>
         </div>
-        <div className="col-md-4">
+        <div className="col-md-4 imgsPreviews">
           <div className="row">
           {images.map((image,index) => {
             return (
               <div className='col-sm-4 imgContainer' key={index} >
-                <img className="img-fluid" src={image} onLoad={this.imageElement} onClick={this.loadIntoCanvas}/>
-                <button type="button" className="btn btn-danger" name={index} onClick={this.removeImage}> &#10008; </button>
+                <img 
+                  className="img-fluid" 
+                  name={index} 
+                  src={image} 
+                  onLoad={this.imageElement} 
+                  onClick={this.loadIntoCanvas}/>
+                <button 
+                  type="button" 
+                  className="btn btn-danger" 
+                  name={index} 
+                  onClick={this.removeImage}> &#10008; </button>
               </div>
             );}
           )}

@@ -1,0 +1,35 @@
+* {
+      /* background-color: rgb(216, 216, 216); */
+    }
+
+    #canvas {
+      /* border: 1px solid #999; */
+      margin: 1rem auto;
+      display: block;
+      margin: auto;
+      position: fixed;
+      top: 25px;
+      left: 25px;
+
+    }
+
+    img {
+      cursor: pointer;
+    }
+    .selected { 
+        outline: 5px dashed cornflowerblue;    
+        z-index: 100;
+    }
+    img:hover {
+      outline: 5px dashed grey;
+    }
+    .imgContainer {
+      margin: 10px;
+    }
+    .waiting {
+      width: 1vh;
+      background: blue;
+    }
+    .imgsPreviews > button {
+      margin-top: 5px;
+    }
