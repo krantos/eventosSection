@@ -95,7 +95,9 @@ class PathEventos extends Component {
     } else {
       return(  
           <div id="resized">
-            {images.map((image,index) => <img key={index} src={image} onLoad={this.imageElement}/> )}
+            {images.map((image,index) => 
+              <img className="img-fluid" key={index} src={image} onLoad={this.imageElement}/> 
+            )}
           </div>
       );
 
