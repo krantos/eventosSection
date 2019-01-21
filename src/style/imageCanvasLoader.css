@@ -2,17 +2,6 @@
       /* background-color: rgb(216, 216, 216); */
     }
 
-    #canvas {
-      /* border: 1px solid #999; */
-      margin: 1rem auto;
-      display: block;
-      margin: auto;
-      position: fixed;
-      top: 25px;
-      left: 25px;
-
-    }
-
     img {
       cursor: pointer;
     }
@@ -25,11 +14,30 @@
     }
     .imgContainer {
       margin: 10px;
-    }
+		}
     .waiting {
       width: 1vh;
       background: blue;
     }
     .imgsPreviews > button {
       margin-top: 5px;
-    }
+		}
+		.upload-btn-wrapper {
+			position: relative;
+			overflow: hidden;
+			display: inline-block;
+		}
+
+		.upload-btn-wrapper button {
+			font-size: 1.2em;
+		}
+
+		.upload-btn-wrapper input[type=file] {
+			font-size: 100px;
+			position: absolute;
+			left: 0;
+			top: 0;
+			opacity: 0;
+		}
+
+			
